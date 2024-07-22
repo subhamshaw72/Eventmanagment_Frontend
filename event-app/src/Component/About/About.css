@@ -1,0 +1,9 @@
+/* About.css */
+.testimonial-container {
+    background-color: #1c1c1c; /* Dark background color */
+    border: 5px solid white; /* Green border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the container */
+    margin-top: 20px; /* Top margin */
+  }
+  

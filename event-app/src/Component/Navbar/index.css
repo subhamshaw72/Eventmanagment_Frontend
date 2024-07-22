@@ -1,0 +1,47 @@
+@import url(https://unpkg.com/@webpixels/css@1.0/dist/index.css);
+.navbar-nav .nav-item.nav-link:hover {
+    color: red;
+  }
+  /* .navbar{
+    position: st;
+  } */
+  .user-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #4caf50; /* Desired background color */
+    color: white;
+    border-radius: 80%; /* Makes the icon circular */
+    border: 2px solid white; /* White border around the circle */
+    font-size: 1.2em; /* Adjust font size as needed */
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .user-icon:hover {
+    background-color: #45a049; /* Hover color */
+    transform: scale(1.1); /* Slightly enlarges the icon on hover */
+  }
+  
+  .navbar-nav .dropdown-menu {
+    min-width: 200px;
+  }
+  
+  .navbar-nav .dropdown-menu .dropdown-item {
+    padding: 10px 20px;
+  }
+  
+  .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .navbar-nav .dropdown-divider {
+    margin: 0.5rem 0;
+  }
+  
+  
+  .custom-logo {
+    max-height: 60px;
+  }
+  
