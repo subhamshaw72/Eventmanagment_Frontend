@@ -15,7 +15,7 @@ function Yourprofile() {
       const email = localStorage.getItem("userEmail");
       try {
         const response = await axios.get(
-          `http://localhost:8000/userserver/getuserbyemail/${email}`
+          `https://event-managment-admin-backend-1.onrender.com/userserver/getuserbyemail/${email}`
         );
         setUsers(response.data);
       } catch (error) {
@@ -37,7 +37,7 @@ function Yourprofile() {
     }
     try {
       await axios.delete(
-        `http://localhost:8000/userserver/deleteuser/${users._id}`
+        `https://event-managment-admin-backend-1.onrender.com/userserver/deleteuser/${users._id}`
       );
       localStorage.removeItem('userEmail');
      window.location.href="/";

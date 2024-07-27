@@ -13,7 +13,7 @@ function Yourbooking() {
     const fetchBookings = async () => {
       const email = localStorage.getItem('userEmail');
       try {
-        const response = await axios.get(`http://localhost:8000/Bookserver/getorderbyemail/${email}`);
+        const response = await axios.get(`https://event-managment-admin-backend-1.onrender.com/Bookserver/getorderbyemail/${email}`);
         setBookings(response.data);
       } catch (error) {
         setError(error.response ? error.response.data.message : error.message);
@@ -31,7 +31,7 @@ function Yourbooking() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:8000/Bookserver/deleteorder/${id}`);
+      await axios.delete(`https://event-managment-admin-backend-1.onrender.com/Bookserver/deleteorder/${id}`);
       setBookings(bookings.filter(booking => booking._id !== id));
     } catch (error) {
       console.error('Error cancelling booking:', error);
@@ -48,7 +48,7 @@ function Yourbooking() {
       return;
     }
     try {
-      const response = await axios.patch(`http://localhost:8000/Bookserver/updateorder/${id}`, editingBooking);
+      const response = await axios.patch(`https://event-managment-admin-backend-1.onrender.com/Bookserver/updateorder/${id}`, editingBooking);
       setBookings(bookings.map(booking => (booking._id === id ? response.data.order : booking)));
       setEditingBooking(null);
       setPhoneError('');

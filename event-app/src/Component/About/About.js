@@ -6,7 +6,7 @@ function About() {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/Aboutserver/getAllabout")
+    axios.get("https://event-managment-admin-backend-1.onrender.com/Aboutserver/getAllabout")
       .then(response => {
         setTestimonials(response.data);
       })

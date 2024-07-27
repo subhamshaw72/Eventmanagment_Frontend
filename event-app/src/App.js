@@ -1,4 +1,5 @@
 import React from "react";
+
 import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,44 +21,22 @@ import Yourbooking from "./Component/Yourbooking/Yourbooking";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-
-        <Route
-          path="/about"
-          element={
-            <ProtectedRoute>
-              <About />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <ProtectedRoute>
-              <Contactus />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/service"
-          element={
-            <ProtectedRoute>
-              <Service />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/yourprofile" element={<Yourprofile></Yourprofile>} />
-        <Route path="/yourbooking" element={<Yourbooking></Yourbooking>} />
-      </Routes>
-
-      <Footer />
-    </Router>
+        
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/about" element={<ProtectedRoute><About /></ProtectedRoute>} />
+          <Route path="/contact" element={<ProtectedRoute><Contactus /></ProtectedRoute>} />
+          <Route path="/service" element={<ProtectedRoute><Service /></ProtectedRoute>} />
+          <Route path="/yourprofile" element={<Yourprofile />} />
+          <Route path="/yourbooking" element={<Yourbooking />} />
+        </Routes>
+        <Footer />
+      </Router>
+   
   );
 }
 

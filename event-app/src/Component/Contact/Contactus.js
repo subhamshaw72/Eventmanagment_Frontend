@@ -77,7 +77,7 @@ function Contactus() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(new_user),
     };
-    const response = await fetch('http://localhost:8000/Contactserver/getmessage', requestOptions);
+    const response = await fetch('https://event-managment-admin-backend-1.onrender.com/Contactserver/getmessage', requestOptions);
     const data = await response.json();
     if(data._id!=null){
       setAlertMessage('Thank you for your message! We will contact you soon.')

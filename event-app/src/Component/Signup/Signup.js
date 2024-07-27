@@ -74,7 +74,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/userserver/registeruser', requestOptions);
+      const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/registeruser', requestOptions);
       const data = await response.json();
 
       if (response.status === 409) {

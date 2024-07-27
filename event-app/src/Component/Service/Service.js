@@ -27,7 +27,7 @@ function Service() {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch("http://localhost:8000/Manage/getAllProducts");
+      const response = await fetch("https://event-managment-admin-backend-1.onrender.com/Manage/getAllProducts");
       const data = await response.json();
       setServices(data);
     } catch (error) {
@@ -62,7 +62,7 @@ function Service() {
       body: JSON.stringify(new_user),
     };
     const response = await fetch(
-      "http://localhost:8000/Bookserver/getorder",
+      "https://event-managment-admin-backend-1.onrender.com/Bookserver/getorder",
       requestOptions
     );
     const data = await response.json();

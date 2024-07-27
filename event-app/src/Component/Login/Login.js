@@ -23,7 +23,7 @@ export default function Login() {
       body: JSON.stringify(new_user)
     };
     try {
-      const response = await fetch('http://localhost:8000/userserver/Loginuser', requestOptions);
+      const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/Loginuser', requestOptions);
       const data = await response.json();
       if (data._id != null) {
         setAlertMessage('User logged in successfully!');
@@ -44,7 +44,7 @@ export default function Login() {
   const requestPasswordReset = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/userserver/requestUpdatePassword', {
+      const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/requestUpdatePassword', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
@@ -67,7 +67,7 @@ export default function Login() {
   const resetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/userserver/updatePassword', {
+      const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/updatePassword', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp, newPassword })
