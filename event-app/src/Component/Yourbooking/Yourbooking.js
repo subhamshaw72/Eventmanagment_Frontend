@@ -87,102 +87,104 @@ function Yourbooking() {
   }
 
   return (
-    <>
-      <table className="table table-dark mt-20">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Event</th>
-            <th scope="col">Location</th>
-            <th scope="col">Number</th>
-            <th scope="col">Date of Event</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking._id}>
-              <td>{booking.name}</td>
-              <td>{booking.email}</td>
-              <td>{booking.Nameofevent}</td>
-              <td>
-                {editingBooking && editingBooking._id === booking._id ? (
-                  <input
-                    type="text"
-                    name="location"
-                    value={editingBooking.location}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  booking.location
-                )}
-              </td>
-              <td>
-                {editingBooking && editingBooking._id === booking._id ? (
-                  <>
+    <div className="container mt-4">
+      <div className="table-responsive">
+        <table className="table table-dark mt-20">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Event</th>
+              <th scope="col">Location</th>
+              <th scope="col">Number</th>
+              <th scope="col">Date of Event</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookings.map((booking) => (
+              <tr key={booking._id}>
+                <td>{booking.name}</td>
+                <td>{booking.email}</td>
+                <td>{booking.Nameofevent}</td>
+                <td>
+                  {editingBooking && editingBooking._id === booking._id ? (
                     <input
                       type="text"
-                      name="phone"
-                      value={editingBooking.phone}
+                      name="location"
+                      value={editingBooking.location}
                       onChange={handleChange}
                     />
-                    {phoneError && <div className="text-danger">{phoneError}</div>}
-                  </>
-                ) : (
-                  booking.phone
-                )}
-              </td>
-              <td>
-                {editingBooking && editingBooking._id === booking._id ? (
-                  <input
-                    type="date"
-                    name="Dateofevent"
-                    value={editingBooking.Dateofevent}
-                    min={getTodayDate()}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  new Date(booking.Dateofevent).toLocaleDateString()
-                )}
-              </td>
-              <td>{booking.status}</td>
-              <td>
-                {booking.status !== 'accepted' && (
-                  <>
-                    <button
-                      type="button"
-                      className="btn btn-secondary me-2"
-                      onClick={() => handleEdit(booking)}
-                    >
-                      Edit
-                    </button>
-                    {editingBooking && editingBooking._id === booking._id ? (
+                  ) : (
+                    booking.location
+                  )}
+                </td>
+                <td>
+                  {editingBooking && editingBooking._id === booking._id ? (
+                    <>
+                      <input
+                        type="text"
+                        name="phone"
+                        value={editingBooking.phone}
+                        onChange={handleChange}
+                      />
+                      {phoneError && <div className="text-danger">{phoneError}</div>}
+                    </>
+                  ) : (
+                    booking.phone
+                  )}
+                </td>
+                <td>
+                  {editingBooking && editingBooking._id === booking._id ? (
+                    <input
+                      type="date"
+                      name="Dateofevent"
+                      value={editingBooking.Dateofevent}
+                      min={getTodayDate()}
+                      onChange={handleChange}
+                    />
+                  ) : (
+                    new Date(booking.Dateofevent).toLocaleDateString()
+                  )}
+                </td>
+                <td>{booking.status}</td>
+                <td>
+                  {booking.status !== 'accepted' && (
+                    <>
                       <button
                         type="button"
-                        className="btn btn-success me-2"
-                        onClick={() => handleSave(booking._id)}
+                        className="btn btn-secondary btn-sm me-2"
+                        onClick={() => handleEdit(booking)}
                       >
-                        Save
+                        Edit
                       </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={() => handleCancel(booking._id)}
-                      >
-                        Cancel
-                      </button>
-                    )}
-                  </>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+                      {editingBooking && editingBooking._id === booking._id ? (
+                        <button
+                          type="button"
+                          className="btn btn-success btn-sm me-2"
+                          onClick={() => handleSave(booking._id)}
+                        >
+                          Save
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleCancel(booking._id)}
+                        >
+                          Cancel
+                        </button>
+                      )}
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 
