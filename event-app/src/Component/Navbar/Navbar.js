@@ -36,7 +36,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top px-0 py-0 mb-0">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top px-0 py-3 mb-0">
       <div className="container-xl">
         <Link className="navbar-brand" to="/">
           <img

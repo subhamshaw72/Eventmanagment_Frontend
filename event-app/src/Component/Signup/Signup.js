@@ -9,31 +9,16 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [contact, setContact] = useState('');
   const [address, setAddress] = useState('');
-
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const navigate = useNavigate();
 
-  const validateEmail = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
-
-  const validatePassword = (password) => {
-    // Password must be at least 8 characters long and include at least one number and one special character
-    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
-    return re.test(password);
-  };
-
-  const validatePhone = (phone) => {
-    const re = /^\d{10}$/;
-    return re.test(phone);
-  };
-
-  const passwordsMatch = () => {
-    return password === confirmPassword;
-  };
+  const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
+  const validatePassword = (password) => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/.test(password);
+  const validatePhone = (phone) => /^\d{10}$/.test(phone);
+  const passwordsMatch = () => password === confirmPassword;
 
   const register = async () => {
     if (!validateEmail(email)) {
@@ -41,32 +26,25 @@ function Signup() {
       setAlertType('danger');
       return;
     }
-
     if (!validatePassword(password)) {
       setAlertMessage('Password must be at least 8 characters long and include at least one number and one special character.');
       setAlertType('danger');
       return;
     }
-
     if (!passwordsMatch()) {
       setAlertMessage('Passwords do not match.');
       setAlertType('danger');
       return;
     }
-
     if (!validatePhone(contact)) {
       setAlertMessage('Phone number must be exactly 10 digits.');
       setAlertType('danger');
       return;
     }
 
-    const new_user = {
-      email,
-      name,
-      password,
-      contact,
-      address,
-    };
+    setIsLoading(true); // Start loading
+
+    const new_user = { email, name, password, contact, address };
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -92,6 +70,8 @@ function Signup() {
     } catch (error) {
       setAlertMessage('An error occurred during registration.');
       setAlertType('danger');
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -99,7 +79,7 @@ function Signup() {
     <div className="container mt-20">
       <div className="content">
         <h1 className="form-title">Register on Eventopia</h1>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           {alertMessage && (
             <div className={`alert alert-${alertType} alert-dismissible fade show`} role="alert">
               <strong>{alertMessage}</strong>
@@ -131,11 +111,25 @@ function Signup() {
           </div>
           <input type="text" placeholder="Enter your address" onChange={(e) => setAddress(e.target.value)} />
 
-          <button className="button-signup" type="button" onClick={register}>
-            Submit
+          <button
+            className="button-signup"
+            type="button"
+            onClick={register}
+            disabled={isLoading} // Disable while loading
+          >
+            {isLoading ? (
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            ) : (
+              'Submit'
+            )}
           </button>
           <div className="login-link">
-            <p className="text-dark">Already registered? <a href="#" onClick={() => navigate('/login')} className="btn btn-outline-primary">Login</a></p>
+            <p className="text-dark">
+              Already registered?{' '}
+              <a href="#" onClick={() => navigate('/login')} className="btn btn-outline-primary">
+                Login
+              </a>
+            </p>
           </div>
         </form>
       </div>

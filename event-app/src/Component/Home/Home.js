@@ -165,19 +165,7 @@ function Home() {
               </p>
             </div>
           </div>
-          <div className="single-box">
-            <div className="img-area" />
-            <div className="img-text">
-              <span className="header-text">
-                <strong>Mridul Pal</strong>
-              </span>
-              <div className="line" />
-              <h3>Buisness Analyst</h3>
-              <p>
-              A business analyst meticulously examines and interprets data, ensuring every insight aligns perfectly to drive strategic and impactful decisions.
-              </p>
-            </div>
-          </div>
+         
           
         </div>
       </div>

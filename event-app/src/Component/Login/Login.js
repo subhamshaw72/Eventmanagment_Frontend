@@ -11,17 +11,22 @@ export default function Login() {
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false); // Login loading state
+  const [isResettingPassword, setIsResettingPassword] = useState(false); // Password reset loading state
 
   const navigate = useNavigate();
 
   const find = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
+
     const new_user = { email, password };
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(new_user)
+      body: JSON.stringify(new_user),
     };
+    
     try {
       const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/Loginuser', requestOptions);
       const data = await response.json();
@@ -38,16 +43,20 @@ export default function Login() {
     } catch (error) {
       setAlertMessage('An error occurred during login.');
       setAlertType('danger');
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
   const requestPasswordReset = async (e) => {
     e.preventDefault();
+    setIsResettingPassword(true); // Start loading
+
     try {
       const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/requestUpdatePassword', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email }),
       });
       const data = await response.json();
       if (data.message === 'OTP sent to your email') {
@@ -61,16 +70,20 @@ export default function Login() {
     } catch (error) {
       setAlertMessage('An error occurred while requesting password reset.');
       setAlertType('danger');
+    } finally {
+      setIsResettingPassword(false); // Stop loading
     }
   };
 
   const resetPassword = async (e) => {
     e.preventDefault();
+    setIsResettingPassword(true); // Start loading
+
     try {
       const response = await fetch('https://event-managment-admin-backend-1.onrender.com/userserver/updatePassword', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp, newPassword })
+        body: JSON.stringify({ email, otp, newPassword }),
       });
       const data = await response.json();
       if (data.message === 'Password updated successfully') {
@@ -85,6 +98,8 @@ export default function Login() {
     } catch (error) {
       setAlertMessage('An error occurred while resetting password.');
       setAlertType('danger');
+    } finally {
+      setIsResettingPassword(false); // Stop loading
     }
   };
 
@@ -109,7 +124,14 @@ export default function Login() {
                 <input id="user-pass" type="password" required onChange={(e) => setPassword(e.target.value)} />
                 <label>Password</label>
               </div>
-              <input id="submit" type="submit" value="Submit" />
+              <button id="submit" type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              ) : (
+                'Submit'
+              )}
+            </button>
+
             </form>
             <div className="container mt-5">
               <p>
@@ -129,7 +151,7 @@ export default function Login() {
         </div>
         {showForgotPassword && (
           <div id="forgot-password">
-            <div className="box  bg-danger text-white">
+            <div className="box bg-danger text-white">
               <h2>Forgot Password</h2>
               {step === 1 && (
                 <form onSubmit={requestPasswordReset}>
@@ -137,7 +159,9 @@ export default function Login() {
                     <input type="email" required onChange={(e) => setEmail(e.target.value)} />
                     <label>Email</label>
                   </div>
-                  <input id="submit" type="submit" value="Request OTP" />
+                  <button type="submit" disabled={isResettingPassword}>
+                    {isResettingPassword ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : 'Request OTP'}
+                  </button>
                 </form>
               )}
               {step === 2 && (
@@ -150,7 +174,9 @@ export default function Login() {
                     <input type="password" required onChange={(e) => setNewPassword(e.target.value)} />
                     <label>New Password</label>
                   </div>
-                  <input id="submit" type="submit" value="Reset Password" />
+                  <button type="submit" disabled={isResettingPassword}>
+                    {isResettingPassword ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : 'Reset Password'}
+                  </button>
                 </form>
               )}
               <button className="btn btn-outline-secondary mt-3" onClick={() => setShowForgotPassword(false)}>Cancel</button>

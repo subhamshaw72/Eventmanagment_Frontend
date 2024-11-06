@@ -75,4 +75,10 @@
     color: rgb(39, 45, 45);
     font-family: serif;
 }
-
+.team-img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Optional: For circular images */
+    object-fit: cover; /* Ensures the image covers the area */
+  }
+  

@@ -42,3 +42,78 @@
 .custom-logo {
     max-height: 60px;
 }
+/* Profile Icon Style */
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Make it larger */
+    height: 40px;
+    border-radius: 50%;
+    background-color: #6a11cb; /* Add a background color */
+    color: rgb(18, 150, 187); /* Icon color */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .user-icon:hover {
+    background-color: #5c0dcf; /* Darker shade on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+  }
+  
+  /* Dropdown menu style */
+  .dropdown-menu {
+    border-radius: 8px; /* Rounded dropdown */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #e3e318;
+    color: #333;
+  }
+  /* Style for 'Your Profile' and other dropdown items */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px; /* Add padding for better spacing */
+    font-weight: 500;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #6a11cb; /* Background color on hover */
+    color: rgb(224, 123, 15); /* Text color on hover */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Custom styling for Register and Login buttons */
+  .btn-primary {
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient effect */
+    border: none;
+    color: rgb(32, 141, 191);
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 20px; /* Rounded edges for a pill shape */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  }
+  
+  /* Custom styling for smaller Login button */
+  .nav-item .nav-link {
+    font-size: 0.9rem;
+    color: #6a11cb;
+    font-weight: 600;
+    padding: 8px;
+  }
+  
+  .nav-item .nav-link:hover {
+    color: #2575fc;
+    background-color: rgba(106, 17, 203, 0.1); /* Background on hover */
+    border-radius: 8px;
+  }
+  
